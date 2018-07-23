@@ -28,10 +28,7 @@ def add():
 
     gitlab_addr = config.get('gitlab_addr', None)
 
-    err = provider(config['repo_provider'], config['repo_name'],
-                   config['user_name'], config['repo_branch'], gitlab_addr)
-
-    if err:
-        return jsonify({'message': err})
+    provider(config['repo_provider'], config['repo_name'], config['user_name'],
+             config['repo_branch'], gitlab_addr)
 
     return jsonify({'message': 'Build added successfully'})

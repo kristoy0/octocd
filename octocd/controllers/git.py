@@ -1,4 +1,7 @@
-def provider(repo_provider, repo_name, user_name, repo_branch,
+def provider(repo_provider,
+             repo_name,
+             user_name,
+             repo_branch,
              gitlab_addr=None):
     """Interface for git providers
 
