@@ -1,5 +1,5 @@
 from flask import Flask
-from octocd.controllers.main import main
+from octocd.controllers.build import build
 
 
 def create_app():
@@ -14,6 +14,6 @@ def create_app():
 
     app = Flask(__name__)
 
-    app.register_blueprint(main)
+    app.register_blueprint(build, url_prefix='/build')
 
     return app
