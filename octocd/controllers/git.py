@@ -1,8 +1,9 @@
 def provider(repo_provider,
              repo_name,
              user_name,
-             repo_branch,
-             gitlab_addr=None):
+             gitlab_addr=None,
+             repo_branch='master'
+             ):
     """Interface for git providers
 
     Used to check which provider is being used
@@ -15,7 +16,7 @@ def provider(repo_provider,
         gitlab_addr: GitLab base address
 
     Returns:
-        Error string
+        Url to the .octoci.yml configuration file in the repository
     """
 
     baseconf = '.octoci.yml'
@@ -26,14 +27,14 @@ def provider(repo_provider,
         base_url = 'https://raw.githubusercontent.com'
         url = '{0}/{1}/{2}/{3}'.format(base_url, repo_name, user_name, file)
 
-        print(url)
+        return url
 
     elif repo_provider == 'gitlab':
         if gitlab_addr:
             url = '{0}/{1}/{2}/raw/{3}'.format(gitlab_addr, user_name,
                                                repo_name, file)
 
-            print(url)
+            return url
+        return 'Gitlab url missing'
 
-        else:
-            return 'GitLab base address missing'
+    return 'Invalid parameters'

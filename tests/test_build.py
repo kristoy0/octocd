@@ -4,11 +4,11 @@ import pytest
 
 @pytest.mark.usefixtures("testapp")
 class TestBuild:
+
     def test_build_controller(self, testapp):
         data = {
             'user_name': 'root',
             'repo_name': 'test',
-            'repo_branch': '',
             'repo_provider': 'gitlab',
             'gitlab_addr': 'http://localhost',
         }
@@ -24,8 +24,6 @@ class TestBuild:
     def test_build_controller_fail(self, testapp):
         data = {
             'user_name': 'root',
-            'repo_name': 'test',
-            'repo_branch': '',
             'repo_provider': 'gitlab',
         }
 

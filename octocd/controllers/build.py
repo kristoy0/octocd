@@ -18,17 +18,15 @@ def add():
     config = request.get_json()
 
     if not config.keys() >= {
-            'repo_name', 'user_name', 'repo_branch', 'repo_provider',
-            'gitlab_addr'
+            'repo_name', 'user_name', 'repo_provider',
+
     }:
         return jsonify({'message': 'Invalid request'})
 
-    if not config['repo_branch']:
-        config['repo_branch'] = 'master'
-
+    repo_branch = config.get('repo_branch', 'master')
     gitlab_addr = config.get('gitlab_addr', None)
 
-    provider(config['repo_provider'], config['repo_name'], config['user_name'],
-             config['repo_branch'], gitlab_addr)
+    url = provider(config['repo_provider'], config['repo_name'], config['user_name'],
+             repo_branch, gitlab_addr)
 
     return jsonify({'message': 'Build added successfully'})
