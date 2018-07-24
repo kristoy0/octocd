@@ -2,8 +2,7 @@ def provider(repo_provider,
              repo_name,
              user_name,
              gitlab_addr=None,
-             repo_branch='master'
-             ):
+             repo_branch='master'):
     """Interface for git providers
 
     Used to check which provider is being used

@@ -4,7 +4,6 @@ import pytest
 
 @pytest.mark.usefixtures("testapp")
 class TestBuild:
-
     def test_build_controller(self, testapp):
         data = {
             'user_name': 'root',

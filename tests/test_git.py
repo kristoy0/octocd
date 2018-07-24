@@ -1,8 +1,7 @@
-from octocd.controllers import git
+from octocd import git
 
 
 class TestGit:
-
     def test_github_url(self):
         rv = git.provider('github', 'test', 'root')
         url = 'https://raw.githubusercontent.com/test/root/master/.octoci.yml'
