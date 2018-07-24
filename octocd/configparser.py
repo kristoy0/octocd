@@ -56,6 +56,21 @@ def validate_config(config):
     try:
         validate(config_dict, schema)
     except ValidationError as e:
-        return "Given YAML configuration is not valid: {}".format(e)
+        return 'Given YAML configuration is not valid: {}'.format(e)
 
     return config_dict
+
+
+def create_config_script(config):
+    config_dict = validate_config(config)
+
+    metadata = {
+        'image': config_dict['image'],
+        'ports': config_dict['ports']
+    }
+
+    script_array = config_dict['install_it'] + config_dict['build_it'] + config_dict['start_it'] + config_dict['test_it']
+
+    script = ' && '.join(script_array)
+
+    return metadata, script
