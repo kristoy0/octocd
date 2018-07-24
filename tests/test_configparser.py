@@ -2,10 +2,13 @@ from octocd import configparser
 
 
 class TestConfigParser:
-
     def test_parsing(self):
         config = """
         image: python:latest
+
+        ports:
+          - 8080:80
+          - 8443:443
 
         install_it:
           - apt-get install python-pip
@@ -18,17 +21,18 @@ class TestConfigParser:
           - python runserver.py
 
         test_it:
-          - curl http://localhost:5000
+          - curl http://localhost:80
         """
 
         valid_dict = {
             'image':
             'python:latest',
+            'ports': ['8080:80', '8443:443'],
             'install_it':
             ['apt-get install python-pip', 'pip install -r requirements.txt'],
             'build_it': ['echo "build step"'],
             'start_it': ['python runserver.py'],
-            'test_it': ['curl http://localhost:5000']
+            'test_it': ['curl http://localhost:80']
         }
 
         config_dict = configparser.validate_config(config)

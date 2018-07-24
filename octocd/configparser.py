@@ -7,6 +7,9 @@ schema = {
         "image": {
             "type": "string"
         },
+        "ports": {
+            "type": "array"
+        },
         "install_it": {
             "type": "array"
         },
