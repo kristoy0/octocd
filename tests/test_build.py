@@ -18,7 +18,7 @@ class TestBuild:
             content_type='application/json')
 
         assert rv.status_code == 200
-        assert b'{"message":"Build added successfully"}\n' in rv.data
+        assert b'{\n  "message": "Build added successfully"\n}\n' in rv.data
 
     def test_build_controller_fail(self, testapp):
         data = {
@@ -31,8 +31,8 @@ class TestBuild:
             data=json.dumps(data),
             content_type='application/json')
 
-        assert rv.status_code == 200
-        assert b'{"message":"Invalid request"}\n' in rv.data
+        assert rv.status_code == 401
+        assert b'{\n  "message": "Invalid request"\n}\n' in rv.data
 
     def test_build_controller_branch(self, testapp):
         data = {
@@ -44,4 +44,4 @@ class TestBuild:
             data=json.dumps(data),
             content_type='application/json')
 
-        assert rv.status_code == 200
+        assert rv.status_code == 401
